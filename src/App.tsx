@@ -7,10 +7,11 @@ import { AppProvider } from "@/context/AppContext";
 import { MainLayout } from "@/components/layout/MainLayout";
 import { Dashboard } from "@/pages/Dashboard";
 import { Sensors } from "@/pages/Sensors";
-import { MapView } from "@/pages/MapView";
-import { Materials } from "@/pages/Materials";
-import { CameraStream } from "@/pages/CameraStream";
-import { Settings } from '@/pages/Settings';
+import MapViewNew from '@/pages/MapViewNew';
+import MaterialsNew from '@/pages/MaterialsNew';
+import CameraStreamNew from '@/pages/CameraStreamNew';
+import { SettingsReal } from '@/pages/SettingsReal';
+import { PreservationAnalysis } from '@/pages/PreservationAnalysis';
 
 import NotFound from './pages/NotFound';
 
@@ -25,12 +26,13 @@ const App = () => (
         <BrowserRouter>
           <MainLayout>
             <Routes>
-              <Route path="/" element={<MapView />} />
+              <Route path="/" element={<MapViewNew />} />
               <Route path="/sensors" element={<Sensors />} />
-              <Route path="/map" element={<MapView />} />
-              <Route path="/materials" element={<Materials />} />
-              <Route path="/camera" element={<CameraStream />} />
-              <Route path="/settings" element={<Settings />} />
+              <Route path="/map" element={<MapViewNew />} />
+              <Route path="/materials" element={<MaterialsNew />} />
+              <Route path="/camera" element={<CameraStreamNew />} />
+              <Route path="/settings" element={<SettingsReal />} />
+              <Route path="/analysis" element={<PreservationAnalysis />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </MainLayout>

@@ -1,4 +1,5 @@
 {
+  "version": 2,
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "installCommand": "npm install",
@@ -8,5 +9,26 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ]
+  ],
+  "functions": {},
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "https://archaeoscan-backend.hf.space/api/$1"
+    },
+    {
+      "src": "/ws",
+      "dest": "https://archaeoscan-backend.hf.space/ws"
+    }
+  ],
+  "env": {
+    "VITE_API_URL": "https://archaeoscan-backend.hf.space",
+    "VITE_WS_URL": "wss://archaeoscan-backend.hf.space/ws"
+  },
+  "build": {
+    "env": {
+      "VITE_API_URL": "https://archaeoscan-backend.hf.space",
+      "VITE_WS_URL": "wss://archaeoscan-backend.hf.space/ws"
+    }
+  }
 }

@@ -106,16 +106,10 @@ export function SettingsNew() {
     );
   };
 
-  const getStatusBadge = (status: 'ok' | 'error' | 'warning') => {
-    const variants = {
-      ok: 'bg-green-100 text-green-800',
-      error: 'bg-red-100 text-red-800',
-      warning: 'bg-yellow-100 text-yellow-800'
-    };
-    
+  const getStatusBadge = (status: boolean) => {
     return (
-      <Badge className={variants[status]}>
-        {status === 'ok' ? 'Online' : status === 'error' ? 'Offline' : 'Warning'}
+      <Badge className={status ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
+        {status ? 'Online' : 'Offline'}
       </Badge>
     );
   };
@@ -143,8 +137,8 @@ export function SettingsNew() {
                 <span className="text-sm font-medium">Backend</span>
               </div>
               <div className="flex items-center gap-2">
-                {healthStatus && getStatusIcon(healthStatus.status === 'ok')}
-                {healthStatus && getStatusBadge(healthStatus.status)}
+                {healthStatus && getStatusIcon(healthStatus.status === 'ok' || healthStatus.status === 'healthy')}
+                {healthStatus && getStatusBadge(healthStatus.status === 'ok' || healthStatus.status === 'healthy')}
               </div>
             </div>
 
@@ -155,7 +149,7 @@ export function SettingsNew() {
               </div>
               <div className="flex items-center gap-2">
                 {healthStatus && getStatusIcon(healthStatus.ws || false)}
-                {healthStatus && getStatusBadge(healthStatus.ws ? 'ok' : 'error')}
+                {healthStatus && getStatusBadge(healthStatus.ws || false)}
               </div>
             </div>
 
@@ -166,7 +160,7 @@ export function SettingsNew() {
               </div>
               <div className="flex items-center gap-2">
                 {getStatusIcon(espStatus === 'online')}
-                {getStatusBadge(espStatus === 'online' ? 'ok' : 'error')}
+                {getStatusBadge(espStatus === 'online')}
               </div>
             </div>
           </div>

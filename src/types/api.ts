@@ -1,11 +1,16 @@
 // Health Check Response
 export interface HealthCheckResponse {
-  status: 'ok' | 'error';
+  status: 'ok' | 'error' | 'healthy';
   ws?: boolean;
   db?: boolean;
   esp_cam?: boolean;
   timestamp: number;
   message?: string;
+  services?: {
+    api: string;
+    websocket: string;
+    database: string;
+  };
 }
 
 // Settings

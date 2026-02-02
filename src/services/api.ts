@@ -12,9 +12,12 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 class ApiService {
   private baseUrl: string;
+  private wsUrl: string;
 
-  constructor(baseUrl: string = API_BASE_URL) {
-    this.baseUrl = baseUrl;
+  constructor() {
+    // Используем реальный бэкенд на Hugging Face
+    this.baseUrl = 'https://huggingface.co/spaces/Dyman17/archaeoscan-ws';
+    this.wsUrl = 'wss://huggingface.co/spaces/Dyman17/archaeoscan-ws/ws';
   }
 
   // Health Check
@@ -102,14 +105,19 @@ class ApiService {
   // Preservation Analysis
   async analyzePreservation(artifactId: string): Promise<PreservationAnalysis> {
     try {
-      const response = await fetch(`${this.baseUrl}/artifacts/${artifactId}/analyze`, {
-        method: 'POST',
-      });
-      const result: ApiResponse<PreservationAnalysis> = await response.json();
-      if (result.success && result.data) {
-        return result.data;
+      // Сначала получаем артефакт
+      const artifacts = await this.getArtifacts();
+      const artifact = artifacts.find(a => a.id === artifactId);
+      
+      if (!artifact) {
+        throw new Error('Artifact not found');
       }
-      throw new Error(result.error || 'Failed to analyze preservation');
+
+      // Используем AI сервис для анализа
+      const { default: aiService } = await import('./aiService');
+      const analysis = await aiService.analyzePreservation(artifact);
+      
+      return analysis;
     } catch (error) {
       throw new Error('Failed to analyze preservation');
     }
@@ -178,15 +186,14 @@ class ApiService {
 
   // WebSocket URL
   getWebSocketUrl(): string {
-    const wsUrl = import.meta.env.VITE_WS_URL || 'ws://localhost:8000/ws';
-    return wsUrl;
+    return this.wsUrl;
   }
 
   // Настройки по умолчанию
   private getDefaultSettings(): AppSettings {
     return {
       esp_cam_url: 'http://192.168.1.77',
-      ws_url: 'ws://localhost:8000/ws',
+      ws_url: this.wsUrl,
       map_refresh_rate: 1000,
       video_recording: false,
       auto_save_artifacts: true,
