@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ArchaeoScan</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+<div class="sidebar">
+  <div class="logo">ArchaeoScan</div>
+  <nav>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#sensors">Sensors</a>
+    <a href="#map">Map</a>
+    <a href="#materials">Materials</a>
+    <a href="#settings">Settings</a>
+  </nav>
+  <div class="status">System OK</div>
+</div>
+<div class="main">
+  <header>
+    <h1>ArchaeoScan Dashboard</h1>
+  </header>
+  <section id="dashboard" class="grid">
+    <div class="card">
+      <h3>Temperature</h3>
+      <div class="value" id="temp">22°C</div>
+    </div>
+    <div class="card">
+      <h3>Humidity</h3>
+      <div class="value" id="hum">45%</div>
+    </div>
+    <div class="card">
+      <h3>Pressure</h3>
+      <div class="value" id="press">1013 hPa</div>
+    </div>
+    <div class="card">
+      <h3>Preservation Index</h3>
+      <div class="value" id="pi">85%</div>
+    </div>
+  </section>
+  <section id="sensors">
+    <h2>Sensors Data</h2>
+    <table>
+      <thead><tr><th>Sensor</th><th>Value</th><th>Status</th></tr></thead>
+      <tbody id="sensorTable"></tbody>
+    </table>
+  </section>
+  <section id="map">
+    <h2>Map</h2>
+    <div id="mapid"></div>
+  </section>
+  <section id="materials">
+    <h2>Material Analysis</h2>
+    <table>
+      <thead><tr><th>Sample</th><th>Type</th><th>Confidence</th></tr></thead>
+      <tbody id="materialTable"></tbody>
+    </table>
+  </section>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

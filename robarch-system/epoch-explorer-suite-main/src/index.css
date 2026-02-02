@@ -1,0 +1,280 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+
+@layer base {
+  :root {
+    /* Dark scientific theme */
+    --background: 220 15% 8%;
+    --foreground: 210 20% 92%;
+
+    --card: 220 15% 11%;
+    --card-foreground: 210 20% 92%;
+
+    --popover: 220 15% 13%;
+    --popover-foreground: 210 20% 92%;
+
+    --primary: 158 64% 52%;
+    --primary-foreground: 220 15% 8%;
+
+    --secondary: 220 15% 16%;
+    --secondary-foreground: 210 20% 80%;
+
+    --muted: 220 15% 14%;
+    --muted-foreground: 215 15% 55%;
+
+    --accent: 220 15% 18%;
+    --accent-foreground: 210 20% 92%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Status colors */
+    --status-ok: 158 64% 52%;
+    --status-info: 210 100% 56%;
+    --status-ai: 270 67% 58%;
+    --status-warning: 38 92% 50%;
+    --status-error: 0 72% 51%;
+    --status-offline: 220 10% 40%;
+
+    /* Data visualization */
+    --data-primary: 158 64% 52%;
+    --data-secondary: 210 100% 56%;
+    --data-tertiary: 270 67% 58%;
+    --data-quaternary: 38 92% 50%;
+
+    /* Surfaces */
+    --surface-elevated: 220 15% 14%;
+    --surface-overlay: 220 15% 10%;
+    
+    --border: 220 15% 18%;
+    --input: 220 15% 16%;
+    --ring: 158 64% 52%;
+
+    --radius: 0.5rem;
+
+    /* Sidebar */
+    --sidebar-background: 220 15% 6%;
+    --sidebar-foreground: 210 20% 80%;
+    --sidebar-primary: 158 64% 52%;
+    --sidebar-primary-foreground: 220 15% 8%;
+    --sidebar-accent: 220 15% 12%;
+    --sidebar-accent-foreground: 210 20% 92%;
+    --sidebar-border: 220 15% 14%;
+    --sidebar-ring: 158 64% 52%;
+  }
+
+  .dark {
+    --background: 220 15% 8%;
+    --foreground: 210 20% 92%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Mono font for data */
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  /* Scientific card styling */
+  .science-card {
+    @apply bg-card border border-border rounded-lg overflow-hidden;
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .science-card:hover {
+    @apply border-muted-foreground/30;
+  }
+
+  /* Status indicators */
+  .status-dot {
+    @apply w-2 h-2 rounded-full;
+  }
+
+  .status-dot-ok {
+    @apply bg-[hsl(var(--status-ok))];
+    box-shadow: 0 0 8px hsl(var(--status-ok) / 0.5);
+  }
+
+  .status-dot-info {
+    @apply bg-[hsl(var(--status-info))];
+    box-shadow: 0 0 8px hsl(var(--status-info) / 0.5);
+  }
+
+  .status-dot-ai {
+    @apply bg-[hsl(var(--status-ai))];
+    box-shadow: 0 0 8px hsl(var(--status-ai) / 0.5);
+  }
+
+  .status-dot-warning {
+    @apply bg-[hsl(var(--status-warning))];
+    box-shadow: 0 0 8px hsl(var(--status-warning) / 0.5);
+  }
+
+  .status-dot-error {
+    @apply bg-[hsl(var(--status-error))];
+    box-shadow: 0 0 8px hsl(var(--status-error) / 0.5);
+  }
+
+  .status-dot-offline {
+    @apply bg-[hsl(var(--status-offline))];
+  }
+
+  /* Data display */
+  .data-value {
+    @apply font-mono text-foreground tabular-nums;
+  }
+
+  .data-label {
+    @apply text-xs text-muted-foreground uppercase tracking-wider;
+  }
+
+  .data-unit {
+    @apply text-muted-foreground ml-1;
+  }
+
+  /* Skeleton loading */
+  .skeleton-pulse {
+    @apply animate-pulse bg-muted rounded;
+  }
+
+  /* Progress bars */
+  .progress-bar {
+    @apply h-1.5 rounded-full overflow-hidden bg-muted;
+  }
+
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-500 ease-out;
+  }
+
+  .progress-fill-ok {
+    @apply bg-[hsl(var(--status-ok))];
+  }
+
+  .progress-fill-info {
+    @apply bg-[hsl(var(--status-info))];
+  }
+
+  .progress-fill-ai {
+    @apply bg-[hsl(var(--status-ai))];
+  }
+
+  .progress-fill-warning {
+    @apply bg-[hsl(var(--status-warning))];
+  }
+
+  /* Radar animation */
+  @keyframes radar-sweep {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .radar-sweep {
+    animation: radar-sweep 6s linear infinite;
+  }
+
+  /* Gentle fade in */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  /* Stagger children */
+  .stagger-children > * {
+    animation: fade-in-up 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0;
+  }
+
+  .stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+  .stagger-children > *:nth-child(2) { animation-delay: 50ms; }
+  .stagger-children > *:nth-child(3) { animation-delay: 100ms; }
+  .stagger-children > *:nth-child(4) { animation-delay: 150ms; }
+  .stagger-children > *:nth-child(5) { animation-delay: 200ms; }
+  .stagger-children > *:nth-child(6) { animation-delay: 250ms; }
+  .stagger-children > *:nth-child(7) { animation-delay: 300ms; }
+  .stagger-children > *:nth-child(8) { animation-delay: 350ms; }
+
+  /* Line drawing for graphs */
+  @keyframes draw-line {
+    from {
+      stroke-dashoffset: 1000;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .draw-line {
+    stroke-dasharray: 1000;
+    animation: draw-line 2s ease-out forwards;
+  }
+
+  /* Glow effects */
+  .glow-ok {
+    box-shadow: 0 0 20px hsl(var(--status-ok) / 0.15);
+  }
+
+  .glow-info {
+    box-shadow: 0 0 20px hsl(var(--status-info) / 0.15);
+  }
+
+  .glow-ai {
+    box-shadow: 0 0 20px hsl(var(--status-ai) / 0.15);
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
