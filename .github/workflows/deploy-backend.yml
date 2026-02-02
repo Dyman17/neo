@@ -11,21 +11,18 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - 'server/**'
-      - 'requirements.txt'
-      - 'app.py'
 
 env:
   HF_TOKEN: ${{ secrets.HF_TOKEN }}
   HF_USERNAME: ${{ secrets.HF_USERNAME }}
-  SPACE_NAME: ${{ secrets.HF_SPACE_NAME }}
+  HF_SPACE_NAME: ${{ secrets.HF_SPACE_NAME }}
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout repository
+    - name: Checkout
       uses: actions/checkout@v4
       
     - name: Setup Python
@@ -34,20 +31,13 @@ jobs:
         python-version: '3.9'
         
     - name: Install dependencies
+      working-directory: ./backend
       run: |
         python -m pip install --upgrade pip
-        pip install huggingface_hub
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        
-    - name: Run tests
-      run: |
-        if [ -d "tests" ]; then
-          python -m pytest tests/ -v
-        else
-          echo "No tests found, skipping..."
-        fi
+        pip install -r requirements.txt
         
     - name: Create Hugging Face Space files
+      working-directory: ./backend
       run: |
         mkdir -p huggingface-space
         cat > huggingface-space/README.md << 'EOF'

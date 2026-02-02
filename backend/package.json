@@ -1,0 +1,14 @@
+{
+  "name": "archaeoscan-backend",
+  "version": "1.0.0",
+  "description": "Archaeoscan WebSocket Backend",
+  "main": "src/main.py",
+  "scripts": {
+    "start": "uvicorn src.main:app --host 0.0.0.0 --port 7860",
+    "dev": "uvicorn src.main:app --host 0.0.0.0 --port 7860 --reload",
+    "install-deps": "pip install -r requirements.txt"
+  },
+  "keywords": ["archaeology", "websocket", "fastapi", "esp32"],
+  "author": "Dyman17",
+  "license": "MIT"
+}
