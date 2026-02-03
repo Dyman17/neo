@@ -91,3 +91,111 @@ temp/
 *.njsproj
 *.sln
 *.sw?
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python / backend
+__pycache__/
+*.pyc
+*.pyo
+venv/
+*.py[cod]
+*$py.class
+
+# Python env
+.env
+venv/
+ENV/
+env/
+.venv/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Railway / HF temporary files
+hf-space-temp/
+hf-temp/
+artifacts.db
+
+# Old project folders
+archaeoscan-project/
+robarch-system/
+old-versions/
+backup/
+
+# Test files
+*.test.js
+*.spec.js
+*.test.ts
+*.spec.ts
+__tests__/
+
+# IDE and editor files
+.vscode/settings.json
+.idea/
+*.iml
+
+# System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+
+# Build artifacts
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Deployment files
+.vercel
+.netlify
+.aws-sam
+
+# Local configuration
+config.local.*
+.env.local.*
+
+# Debug files
+*.log.*
+debug/
+logs/
+
+# Cache directories
+.cache/
+.nyc_output/
+coverage/
+
+# IDE specific
+.vs/
+*.user
+*.userprefs
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Mac specific
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
